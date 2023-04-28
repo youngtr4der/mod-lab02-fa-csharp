@@ -188,9 +188,15 @@ namespace fans
         static void Main(string[] args)
         {
             String s = "0000010111";
-            FA fa = new FA();
-            bool? result = fa.Run(s);
-            Console.WriteLine(result);
+            FA1 fa1 = new FA1();
+            bool? result1 = fa1.Run(s);
+            Console.WriteLine(result1);
+            FA2 fa2 = new FA2();
+            bool? result2 = fa2.Run(s);
+            Console.WriteLine(result2);
+            FA3 fa3 = new FA3();
+            bool? result3 = fa3.Run(s);
+            Console.WriteLine(result3);
         }
     }
 }
