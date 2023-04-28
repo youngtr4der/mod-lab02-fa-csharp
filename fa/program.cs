@@ -133,6 +133,56 @@ namespace fans
         }
     }
 
+    public class FA3
+    {
+        public static State q0 = new State()
+        {
+            Name = "q0",
+            IsAcceptState = false,
+            Transitions = new Dictionary<char, State>()
+        };
+
+        public static State q1 = new State()
+        {
+            Name = "q1",
+            IsAcceptState = false,
+            Transitions = new Dictionary<char, State>()
+        };
+
+        public static State q2 = new State()
+        {
+            Name = "q2",
+            IsAcceptState = true,
+            Transitions = new Dictionary<char, State>()
+        };
+
+        State InitialState = q0;
+
+        public FA3()
+        {
+            q0.Transitions['0'] = q0;
+            q0.Transitions['1'] = q1;
+            q1.Transitions['0'] = q0;
+            q1.Transitions['1'] = q2;
+            q2.Transitions['0'] = q2;
+            q2.Transitions['1'] = q2;
+        }
+
+        public bool? Run(IEnumerable<char> s)
+        {
+            State current = InitialState;
+            foreach (var c in s)
+            {
+                current = current.Transitions[c];
+                if (current == null)
+                {
+                    return null;
+                }
+            }
+            return current.IsAcceptState;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
